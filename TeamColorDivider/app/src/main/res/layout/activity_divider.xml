@@ -184,7 +184,23 @@
             android:layout_height="0dp"
             android:layout_weight="1">
 
-            <TextView
+            <View
+                android:id="@+id/view_background"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="20dp" />
+
+            <ImageView
+                android:id="@+id/iv_raccoon"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
+                android:scaleType="fitStart"
+                android:src="@drawable/raccoon2"
+                android:visibility="gone" />
+
+            <com.stillstanding90.teamcolordivider.OutlineTextView
                 android:id="@+id/tv_touch"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -192,17 +208,11 @@
                 android:layout_margin="20dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:gravity="center"
+                android:shadowColor="@color/real_white"
+                android:shadowRadius="4"
                 android:text="0\nTOUCH"
+                android:textColor="@color/real_black"
                 android:textSize="90dp" />
-
-            <ImageView
-                android:id="@+id/iv_raccoon"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="20dp"
-                android:scaleType="fitStart"
-                android:src="@drawable/raccoon2"
-                android:visibility="gone" />
         </FrameLayout>
 
         <Button
@@ -214,13 +224,14 @@
             android:gravity="center"
             android:padding="20dp"
             android:text="RESET"
+            android:textColor="@color/real_black"
             android:textSize="30dp" />
     </LinearLayout>
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lav_favorite"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="@dimen/animation_size"
+        android:layout_height="@dimen/animation_size"
         android:visibility="gone"
         app:lottie_fileName="lottie1.json" />
 </FrameLayout>

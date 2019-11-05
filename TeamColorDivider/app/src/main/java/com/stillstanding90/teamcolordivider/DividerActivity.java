@@ -39,9 +39,11 @@ public class DividerActivity extends Activity {
 
     private LottieAnimationView mLottie;
     private View mTouchFrame;
-    private TextView mTouchText;
+    private View mBackground;
     private ImageView mRaccoon;
+    private OutlineTextView mTouchText;
     private long[] mPatten = {0, 100};
+    private int mLottieCenter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -108,14 +110,20 @@ public class DividerActivity extends Activity {
             mLeaderColors[i] = (int) (Math.random() * mCountColors[i]) + 1;
         }
 
-        mTouchFrame =findViewById(R.id.fl_touch);
-        mTouchText = findViewById(R.id.tv_touch);
+        mLottieCenter = getResources().getDimensionPixelSize(R.dimen.animation_size) / 2;
+
+        mTouchFrame = findViewById(R.id.fl_touch);
+        mBackground = findViewById(R.id.view_background);
         mRaccoon = findViewById(R.id.iv_raccoon);
+        mTouchText = findViewById(R.id.tv_touch);
         mTouchFrame.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
 
                 if (MotionEvent.ACTION_DOWN == motionEvent.getAction()) {
+                    mLottie.setX(motionEvent.getX() - mLottieCenter);
+                    mLottie.setY(motionEvent.getY() - mLottieCenter);
+
                     mRaccoon.setVisibility(View.GONE);
                     mLottie.cancelAnimation();
                     randomPick();
@@ -180,12 +188,12 @@ public class DividerActivity extends Activity {
         if (mNowColors[random] < mCountColors[random]) {
             mNowColors[random]++;
             mTextColors.get(random).setText(mNowColors[random] + "/" + mCountColors[random]);
-            mTouchText.setBackgroundColor(mColors.get(random));
+            mBackground.setBackgroundColor(mColors.get(random));
+            mLottie.setVisibility(View.VISIBLE);
+            mLottie.playAnimation();
 
             if (mLeaderColors[random] == mNowColors[random]) {
                 mRaccoon.setVisibility(View.VISIBLE);
-                mLottie.setVisibility(View.VISIBLE);
-                mLottie.playAnimation();
                 mPatten = new long[]{0, 150, 50, 100, 100, 50};
             }
         } else {

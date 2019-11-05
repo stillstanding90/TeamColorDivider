@@ -14,4 +14,6 @@
     <color name="pink">#FF69B4</color>
     <color name="black">#292929</color>
 
+    <color name="real_black">#000000</color>
+    <color name="real_white">#ffffff</color>
 </resources>
